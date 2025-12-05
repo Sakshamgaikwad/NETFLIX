@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone</title>
+ 
+    <style>
+        /* ---------- GLOBAL ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+ 
+        body {
+            background: #000;
+            color: #fff;
+        }
+ 
+        a { text-decoration: none; color: #fff; }
+ 
+        /* ---------- HEADER ---------- */
+        header {
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            z-index: 10;
+        }
+ 
+        header img {
+            width: 150px;
+        }
+ 
+        header button {
+            background: #e50914;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            color: white;
+        }
+ 
+        /* ---------- HERO SECTION ---------- */
+        .hero {
+            width: 100%;
+            height: 100vh;
+            background: url('assets/hero-bg.jpg') no-repeat center center/cover;
+            position: relative;
+        }
+ 
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.65);
+        }
+ 
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            max-width: 800px;
+            padding: 20px;
+        }
+ 
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+        }
+ 
+        .hero-content h2 {
+            margin-top: 20px;
+            font-size: 1.6rem;
+            font-weight: 300;
+        }
+ 
+        .hero-content .email-box {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+ 
+        .email-box input {
+            padding: 15px;
+            width: 350px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+ 
+        .email-box button {
+            padding: 15px 30px;
+            background: #e50914;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+ 
+        /* ---------- FEATURE SECTIONS ---------- */
+        section {
+            border-top: 8px solid #222;
+            padding: 60px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+ 
+        .text {
+            width: 50%;
+        }
+ 
+        .text h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+ 
+        .media {
+            width: 50%;
+            position: relative;
+        }
+ 
+        .media img {
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+ 
+        .media video {
+            position: absolute;
+            top: 20%;
+            left: 12%;
+            width: 75%;
+            z-index: 1;
+        }
+ 
+        /* ---------- FAQ ---------- */
+        .faq {
+            border-top: 8px solid #222;
+            padding: 50px;
+            text-align: center;
+        }
+ 
+        .faq h1 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+ 
+        .faq-item {
+            background: #303030;
+            margin: 10px auto;
+            width: 70%;
+            text-align: left;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 1.4rem;
+        }
+ 
+        .faq-item:hover {
+            background: #454545;
+        }
+ 
+        .faq-answer {
+            display: none;
+            background: #303030;
+            width: 70%;
+            margin: 0 auto;
+            padding: 20px;
+            font-size: 1.2rem;
+            border-top: 2px solid black;
+        }
+ 
+        /* ---------- FOOTER ---------- */
+        footer {
+            border-top: 8px solid #222;
+            padding: 40px 50px;
+            color: #777;
+        }
+ 
+        footer a { color: #777; }
+        footer .cols {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            margin-top: 20px;
+            line-height: 2;
+        }
+ 
+        /* ---------- SIGN-IN MODAL ---------- */
+        .modal-bg {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+ 
+        .modal {
+            background: #111;
+            padding: 40px;
+            max-width: 400px;
+            width: 90%;
+            border-radius: 8px;
+        }
+ 
+        .modal h2 {
+            margin-bottom: 20px;
+        }
+ 
+        .modal input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            border: none;
+            background: #222;
+            color: white;
+        }
+ 
+        .modal button {
+            width: 100%;
+            padding: 12px;
+            background: #e50914;
+            border: none;
+            margin-top: 15px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+ 
+        .close {
+            cursor: pointer;
+            color: #bbb;
+            float: right;
+            font-size: 25px;
+        }
+ 
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 900px) {
+            section {
+                flex-direction: column;
+                text-align: center;
+            }
+            .text, .media {
+                width: 100%;
+            }
+            .media video {
+                width: 60%;
+                left: 20%;
+            }
+        }
+    </style>
+</head>
+<body>
+ 
+<!-- ---------- HEADER ---------- -->
+<header>
+    <img src="assets/logo.png" alt="Netflix Logo">
+    <button onclick="openModal()">Sign In</button>
+</header>
+ 
+<!-- ---------- HERO ---------- -->
+<div class="hero">
+    <div class="hero-content">
+        <h1>Unlimited movies, TV shows and more.</h1>
+        <h2>Watch anywhere. Cancel anytime.</h2>
+        <div class="email-box">
+            <input type="email" placeholder="Email Address">
+            <button>Get Started ></button>
+        </div>
+    </div>
+</div>
+ 
+<!-- ---------- SECTION 1 ---------- -->
+<section>
+    <div class="text">
+        <h1>Enjoy on your TV</h1>
+        <p>Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, and more.</p>
+    </div>
+    <div class="media">
+        <img src="assets/tv.png">
+        <video autoplay loop muted src="assets/video1.mp4"></video>
+    </div>
+</section>
+ 
+<!-- ---------- FAQ ---------- -->
+<div class="faq">
+    <h1>Frequently Asked Questions</h1>
+ 
+    <div class="faq-item" onclick="toggleFAQ(0)">What is Netflix?</div>
+    <div class="faq-answer">Netflix is a streaming service...</div>
+ 
+    <div class="faq-item" onclick="toggleFAQ(1)">How much does Netflix cost?</div>
+    <div class="faq-answer">Plans range based on region...</div>
+ 
+    <div class="faq-item" onclick="toggleFAQ(2)">Where can I watch?</div>
+    <div class="faq-answer">You can watch anywhere...</div>
+</div>
+ 
+<!-- ---------- FOOTER ---------- -->
+<footer>
+    <p>Questions? Call 000-000-0000</p>
+    <div class="cols">
+        <a href="#">FAQ</a>
+        <a href="#">Help Center</a>
+        <a href="#">Account</a>
+        <a href="#">Media Center</a>
+    </div>
+</footer>
+ 
+<!-- ---------- SIGN-IN MODAL ---------- -->
+<div class="modal-bg" id="modal-bg">
+    <div class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Sign In</h2>
+        <input type="email" placeholder="Email">
+        <input type="password" placeholder="Password">
+        <button>Sign In</button>
+    </div>
+</div>
+ 
+<script>
+    // FAQ toggle
+    function toggleFAQ(i) {
+        const answers = document.querySelectorAll('.faq-answer');
+        answers[i].style.display =
+            answers[i].style.display === "block" ? "none" : "block";
+    }
+ 
+    // Modal controls
+    function openModal() {
+        document.getElementById('modal-bg').style.display = "flex";
+    }
+    function closeModal() {
+        document.getElementById('modal-bg').style.display = "none";
+    }
+</script>
+ 
+</body>
+</html>
