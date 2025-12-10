@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JK Tyres - Frontend Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">JK TYRES</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </header>
+ 
+    <section id="home" class="hero">
+        <h1>Welcome to JK Tyres</h1>
+        <p>India's leading tyre manufacturer delivering performance & safety.</p>
+        <a href="#products" class="btn">Explore Tyres</a>
+    </section>
+ 
+    <section id="products" class="products">
+        <h2>Our Tyre Range</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://via.placeholder.com/200" alt="Tyre 1">
+                <h3>JK UX Royale</h3>
+                <button class="buy-btn">View Details</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/200" alt="Tyre 2">
+                <h3>JK Ranger Series</h3>
+                <button class="buy-btn">View Details</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/200" alt="Tyre 3">
+                <h3>JK Ultima</h3>
+                <button class="buy-btn">View Details</button>
+            </div>
+        </div>
+    </section>
+ 
+    <section id="services" class="services">
+        <h2>Services</h2>
+        <ul>
+            <li>Wheel Alignment</li>
+            <li>Tyre Care & Warranty</li>
+            <li>Roadside Assistance</li>
+        </ul>
+    </section>
+ 
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Message" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+ 
+    <footer>
+        <p>© 2025 JK Tyres Frontend Demo</p>
+    </footer>
+</body>
+</html>
